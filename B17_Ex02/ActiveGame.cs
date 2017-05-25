@@ -13,8 +13,8 @@
         {
             bool notExit = true;
             bool retVal = true;
-            IGameInterface game = new GameEngine();
-            game.StartNewGame();
+            //IGameInterface game = new GameEngine();
+            //game.StartNewGame();
 
             for (int i = 0; i < m_maxNumOfGuesses && notExit; i++)
             {
