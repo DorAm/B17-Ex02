@@ -4,15 +4,14 @@ namespace B17_Ex02
 {
     public class UI_Manager
     {
-        private ActiveGame activeGame = null;
-        private bool hasEndedCorrectly;
+        private ActiveGame m_activeGame = null;
+        private bool m_hasEndedCorrectly;
         public void RunGame()
         {
             Console.WriteLine("Hello! Welcome to bul pgyaa\nPlease enter max number of guesses. should be between 4 and 10");
             int maxNumOfGuesses = getUserInput();
-            //TODO check if input is Q
-            activeGame = new ActiveGame(maxNumOfGuesses);
-            hasEndedCorrectly = activeGame.PlayGame();// for testing
+            m_activeGame = new ActiveGame(maxNumOfGuesses);
+            m_hasEndedCorrectly = m_activeGame.PlayGame();// for testing
 
         }
 
@@ -32,7 +31,7 @@ namespace B17_Ex02
                 success = int.TryParse(input, out parsedInput);
                 if (input == "Q" || input == "q")
                 {
-
+                    parsedInput = 0;
                 }
                 if (success)
                 {

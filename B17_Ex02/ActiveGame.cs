@@ -1,4 +1,6 @@
-﻿namespace B17_Ex02
+﻿using System;
+
+namespace B17_Ex02
 {
     public class ActiveGame
     {
@@ -15,6 +17,7 @@
             bool retVal = true;
             IGameInterface game = new GameEngine();
             game.StartNewGame();
+            printBoard(game.getGameStatus());
 
             for (int i = 0; i < m_maxNumOfGuesses && notExit; i++)
             {
@@ -22,6 +25,11 @@
             }
 
             return retVal;
+        }
+
+        private void printBoard(GameStatus status)
+        {
+            
         }
     }
 }

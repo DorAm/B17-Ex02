@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActiveGame.cs" />
+    <Compile Include="GameStatus.cs" />
     <Compile Include="IGameInterface.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="Program.cs" />
