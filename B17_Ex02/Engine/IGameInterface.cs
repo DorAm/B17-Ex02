@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace B17_Ex02
 {
@@ -6,6 +7,9 @@ namespace B17_Ex02
     public interface IGameInterface
     {
         void StartNewGame();
-        GameStatus getGameStatus();
+        bool isGameOver();
+        
+        List<Guess> GuessList { get; }
+
     }
 }
