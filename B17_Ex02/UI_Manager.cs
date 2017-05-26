@@ -5,14 +5,16 @@ namespace B17_Ex02
     public class UI_Manager
     {
         private ActiveGame m_activeGame = null;
-        private bool m_hasEndedCorrectly;
+        private bool m_PlayAnotherGame = true;
         public void RunGame()
         {
-            Console.WriteLine("Hello! Welcome to bul pgyaa\nPlease enter max number of guesses. should be between 4 and 10");
-            int maxNumOfGuesses = getUserInput();
-            m_activeGame = new ActiveGame(maxNumOfGuesses);
-            m_hasEndedCorrectly = m_activeGame.PlayGame();// for testing
-
+            while (m_PlayAnotherGame)
+            {
+                Console.WriteLine("Hello! Welcome to bul pgyaa\nPlease enter max number of guesses. should be between 4 and 10");
+                int maxNumOfGuesses = getUserInput();
+                m_activeGame = new ActiveGame(maxNumOfGuesses);
+                m_PlayAnotherGame = m_activeGame.PlayGame();// for testing
+            }
         }
 
         private int getUserInput()
