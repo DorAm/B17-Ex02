@@ -4,20 +4,19 @@ namespace B17_Ex02
 {
     public class ActiveGame
     {
-        private int m_maxNumOfGuesses;
+        private IGameInterface m_Game = null;
 
         public ActiveGame(int maxNumOfGuesses)
         {
-            m_maxNumOfGuesses = maxNumOfGuesses;
+            m_Game = new GameEngine(maxNumOfGuesses);
         }
 
         public bool PlayGame()
         {
             bool notExit = true;
             bool retVal = true;
-            IGameInterface game = new GameEngine();
-            game.StartNewGame();
-            printBoard(game.getGameStatus());
+            m_Game.StartNewGame();
+            printBoard(m_Game.getGameStatus());
 
             for (int i = 0; i < m_maxNumOfGuesses && notExit; i++)
             {
