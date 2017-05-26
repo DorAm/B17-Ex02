@@ -16,19 +16,19 @@ namespace B17_Ex02
             bool notExit = true;
             bool retVal = true;
             m_Game.StartNewGame();
-            printBoard(m_Game.getGameStatus());
+            //printBoard(m_Game.getGameStatus());
 
-            for (int i = 0; i < m_maxNumOfGuesses && notExit; i++)
-            {
+            //for (int i = 0; i < m_maxNumOfGuesses && notExit; i++)
+            //{
 
-            }
+            //}
 
             return retVal;
         }
 
-        private void printBoard(GameStatus status)
-        {
+        //private void printBoard(GameStatus status)
+        //{
             
-        }
+        //}
     }
 }
