@@ -1,7 +1,7 @@
 ﻿
 namespace B17_Ex02
 {
-    public enum gameSymbols
+    public enum eGameSymbols
     {
         s1 = 1,
         s2,
