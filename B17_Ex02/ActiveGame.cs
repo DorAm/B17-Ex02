@@ -15,7 +15,6 @@ namespace B17_Ex02
         {
             bool notExit = true;
             bool retVal = true;
-
             IGameInterface game = new GameEngine();
             game.StartNewGame();
             printBoard(game.getGameStatus());

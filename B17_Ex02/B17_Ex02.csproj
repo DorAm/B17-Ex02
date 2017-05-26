@@ -41,7 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActiveGame.cs" />
-    <Compile Include="Enums.cs" />
+    <Compile Include="eGgameSymbols.cs" />
+    <Compile Include="GameConfig.cs" />
+    <Compile Include="GameStatus.cs" />
+    <Compile Include="Guess.cs" />
     <Compile Include="IGameInterface.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="Program.cs" />

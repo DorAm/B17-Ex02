@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace B17_Ex02
 {
-    class GameConfig
+    public static class GameConfig
     {
+        public const int GuessLength = 4;
     }
 }
