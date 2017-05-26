@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace B17_Ex02
+﻿namespace B17_Ex02
 {
     public class GameStatus
     {
