@@ -11,15 +11,19 @@ namespace B17_Ex02
         private int m_NumOfRounds;
         private Dictionary<eGameSymbols, int> m_GeneratedSequence;
         private List<Guess> m_GuessList;
+        private List<GuessResult> m_GuessResultList;
 
         private int m_CurrentRound;
         private Guess m_CurrentGuess;
         private GuessResult m_CurrentGuessResult;
         private bool m_IsVictory;
+        private bool m_IsGameOver;
 
-        // Getters & Setters
-        public List<Guess> GuessList { get => m_GuessList; }
+        // Getters
+        public bool IsGameOver { get => m_IsGameOver; }
         public bool IsVictory { get => m_IsVictory; }
+        public List<Guess> GuessList { get => m_GuessList; }
+        public List<GuessResult> GuessResultList { get => m_GuessResultList; }
 
         // CTOR
         public GameEngine(int i_NumOfRounds)
@@ -32,11 +36,12 @@ namespace B17_Ex02
             this.m_CurrentGuess = null;
             this.m_CurrentGuessResult = new GuessResult();
             this.m_IsVictory = false;
+            this.m_IsGameOver = false;
         }
 
         public void StartNewGame()
         {
-            this.generateRandomSymbolSeries();         
+            this.generateRandomSymbolSeries();
         }
 
         private void generateRandomSymbolSeries()
@@ -48,7 +53,7 @@ namespace B17_Ex02
             for (int i = 0; i < GameConfig.GuessLength; i++)
             {
                 int randomNum = rand.Next(1, numOfSymbols - 1);
-                eGameSymbols randomSymbol = (eGameSymbols) randomNum;
+                eGameSymbols randomSymbol = (eGameSymbols)randomNum;
                 while (m_GeneratedSequence.ContainsKey(randomSymbol))
                 {
                     randomNum = rand.Next(1, numOfSymbols - 1);
@@ -74,7 +79,7 @@ namespace B17_Ex02
         private void compareGuess()
         {
             int symbolIndex = 0;
-            foreach (eGameSymbols symbol in m_CurrentGuess.Guess)
+            foreach (eGameSymbols symbol in m_CurrentGuess.GuessAttempt)
             {
                 if (m_GeneratedSequence.ContainsKey(symbol))
                 {
@@ -85,16 +90,15 @@ namespace B17_Ex02
                     else
                     {
                         this.m_CurrentGuessResult.PgiyaHits++;
-                    }                    
+                    }
                 }
             }
         }
 
-        public bool isGameOver()
+        public void checkGameOver()
         {
-            return m_CurrentRound > m_NumOfRounds;
+            m_IsGameOver = m_CurrentRound > m_NumOfRounds;
         }
-
         public void checkVictory()
         {
             this.m_IsVictory = this.m_CurrentGuessResult.BulHits == GameConfig.GuessLength;

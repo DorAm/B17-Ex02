@@ -1,6 +1,6 @@
 ﻿namespace B17_Ex02
 {
-    class GuessResult
+    public class GuessResult
     {
         // a symbol that appears in the same sequence location
         int m_BulHits = 0;
