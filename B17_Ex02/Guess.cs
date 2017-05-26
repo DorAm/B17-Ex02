@@ -6,7 +6,8 @@ namespace B17_Ex02
 {
     public class Guess
     {
-        public List<eGameSymbols> m_Guess { get; } = null;
+        public List<eGameSymbols> m_Guess = null;
+        public List<eGameSymbols> guess { get; }
 
         public bool ConvertToGameSymbols(string i_UserGuess)
         {
