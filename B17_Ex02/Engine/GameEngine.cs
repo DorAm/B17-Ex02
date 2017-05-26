@@ -9,6 +9,8 @@ namespace B17_Ex02
         private int m_NumOfRounds;
         private int m_CurrentRound;
         private List<Guess> m_GuessList;
+        private List<eGameSymbols> m_GeneratedSeries;
+
 
         // Getters & Setters
         public List<Guess> GuessList { get => m_GuessList; }
@@ -19,18 +21,17 @@ namespace B17_Ex02
             this.m_NumOfRounds = i_NumOfRounds;
             this.m_CurrentRound = 1;
             this.m_GuessList = new List<Guess>();
+            this.m_GeneratedSeries = new List<eGameSymbols>();
         }
 
         public void StartNewGame()
         {
-            throw new NotImplementedException();
+            this.generateRandomSymbolSeries();
         }
 
         // TOOD: test this:
-        private void RandomizeItems()
+        private void generateRandomSymbolSeries()
         {
-            List<eGameSymbols> generatedSeries = new List<eGameSymbols>();
-
             Array symbols = Enum.GetValues(typeof(eGameSymbols));
             int numOfSymbols = symbols.Length;
             Random rand = new Random();
@@ -39,7 +40,7 @@ namespace B17_Ex02
             {
                 int randomNum = rand.Next(1, numOfSymbols - 1);
                 eGameSymbols randomSymbol = (eGameSymbols)symbols.GetValue(randomNum);
-                generatedSeries.Add(randomSymbol);
+                m_GeneratedSeries.Add(randomSymbol);
             }
         }
 
