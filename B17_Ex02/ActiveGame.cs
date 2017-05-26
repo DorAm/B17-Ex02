@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace B17_Ex02
 {
@@ -13,22 +14,52 @@ namespace B17_Ex02
 
         public bool PlayGame()
         {
-            bool notExit = true;
-            bool retVal = true;
+            bool exit = false;
+            bool success = false;
             m_Game.StartNewGame();
-            //printBoard(m_Game.getGameStatus());
 
-            //for (int i = 0; i < m_maxNumOfGuesses && notExit; i++)
-            //{
+            while(!m_Game.isGameOver() && !exit)
+            {
+                Console.WriteLine("current board status:\n");
+                printBoard(m_Game.GuessList);
+                Console.WriteLine("please enter your guess - 4 different letters or 'Q' to exit.\n");
+                string currUserInput = Console.ReadLine();
+                exit = currUserInput == "Q";
+                while (!exit && !success)
+                {
+                     Guess currentUserGuess = new Guess();
+                    if(!(success = currentUserGuess.ConvertToGameSymbols(currUserInput)))
+                    {
+                        Console.WriteLine("Invalid Input! please enter your guess - 4 different letters or 'Q' to exit.\n");
+                        currUserInput = Console.ReadLine();
+                        exit = currUserInput == "Q";
+                        continue;
+                    }
+                } 
+            }
 
-            //}
+            printBoard(m_Game.GuessList);
 
-            return retVal;
+            if(m_Game.isGameOver())
+            {
+                Console.WriteLine("sorry:( you are out of guesses\n");
+            }
+
+            else if(m_Game.isWon())
+            {
+                Console.WriteLine("congragulation! you have won!!!\n");
+            }
+
+            Console.WriteLine("would you like to play another round? press Y for yes\n");
+            string userAnswer = Console.ReadLine();
+            userAnswer = userAnswer.ToUpper();
+
+            return userAnswer == "Y";
         }
 
-        //private void printBoard(GameStatus status)
-        //{
+        private void printBoard(List<Guess> status)
+        {
             
-        //}
+        }
     }
 }
