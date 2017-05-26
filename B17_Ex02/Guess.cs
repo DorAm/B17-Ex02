@@ -12,8 +12,10 @@ namespace B17_Ex02
         {
             bool validUserInput = true;
             bool ignoreCase = true;
+
             i_UserGuess = i_UserGuess.ToUpper();
             validUserInput = checkUserInput(i_UserGuess);
+
             if (validUserInput)
             {
                 foreach (char item in i_UserGuess)
@@ -29,18 +31,19 @@ namespace B17_Ex02
         {
             bool validUserInput = false;
             System.Collections.Generic.HashSet<char> doubleCheck = new HashSet<char>();
+
             if (i_userGuess.Length == GameConfig.GuessLength)
             {
                 foreach (char item in i_userGuess)
                 {
-                    validUserInput = Char.GetNumericValue(item) >= 'A' && Char.GetNumericValue(item) <= 'H' ? true : false;
+                    validUserInput = Char.GetNumericValue(item) >= 'A' && Char.GetNumericValue(item) <= 'H';
 
-                    if (validUserInput = doubleCheck.Contains(item) ? false : true)// check if symbol appears more than once
+                    if (validUserInput = !doubleCheck.Contains(item))// check if symbol appears more than once
                     {
                         doubleCheck.Add(item);
                     }
 
-                    if (!validUserInput)
+                    else
                     {
                         break;
                     }

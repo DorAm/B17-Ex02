@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace B17_Ex02
 {
@@ -16,17 +17,20 @@ namespace B17_Ex02
             bool notExit = true;
             bool retVal = true;
             m_Game.StartNewGame();
-            printBoard(m_Game.getGameStatus());
 
-            for (int i = 0; i < m_maxNumOfGuesses && notExit; i++)
+            while(!m_Game.isGameOver())
             {
+                Console.WriteLine("current board status:");
+                printBoard(m_Game.GuessList);
+                Console.WriteLine("please enter your guess - 4 different letters or 'Q' to exit.");
+                string currUserInput = Console.ReadLine();
 
             }
 
             return retVal;
         }
 
-        private void printBoard(GameStatus status)
+        private void printBoard(List<Guess> status)
         {
             
         }
