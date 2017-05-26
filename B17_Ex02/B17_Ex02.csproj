@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="ActiveGame.cs" />
     <Compile Include="eGgameSymbols.cs" />
+    <Compile Include="Engine\GuessResult.cs" />
     <Compile Include="GameConfig.cs" />
     <Compile Include="Guess.cs" />
     <Compile Include="Engine\IGameInterface.cs" />
