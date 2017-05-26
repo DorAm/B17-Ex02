@@ -1,5 +1,15 @@
 ﻿
 namespace B17_Ex02
 {
-    enum availableItems { c1, c2, c3, c4, c5, c6, c7, c8 };
+    public enum gameSymbols
+    {
+        s1 = 1,
+        s2,
+        s3,
+        s4,
+        s5,
+        s6,
+        s7,
+        s8
+    };
 }
