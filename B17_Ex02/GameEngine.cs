@@ -14,16 +14,20 @@ namespace B17_Ex02
         // TOOD: test this:
         private void RandomizeItems()
         {
-            List<availableItems> generatedSeries = new List<availableItems>();
+            List<eGameSymbols> generatedSeries = new List<eGameSymbols>();
 
-            Random rnd = new Random();
-            for(int i = 0; i < 4; i++)
+            Array symbols = Enum.GetValues(typeof(eGameSymbols));
+            int numOfSymbols = symbols.Length;
+            Random rand = new Random();
+
+            for (int i = 0; i < GuessLength; i++)
             {
-                int randomNumber = rnd.Next(0, 7); // TODO: change to (0, availableItems.size)
-                generatedSeries.Add((availableItems)randomNumber);
+                int randomNum = rand.Next(1, numOfSymbols - 1);
+                eGameSymbols randomSymbol = (eGameSymbols)symbols.GetValue(randomNum);
+                generatedSeries.Add(randomSymbol);       
             }
         }
 
-       
+
     }
 }
