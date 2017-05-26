@@ -8,8 +8,10 @@ namespace B17_Ex02
     {
         void StartNewGame();
         bool isGameOver();
-        
+        void makeGuess(Guess i_UserGuess);
+
         List<Guess> GuessList { get; }
+        
 
     }
 }
