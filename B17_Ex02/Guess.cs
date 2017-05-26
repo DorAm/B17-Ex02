@@ -6,8 +6,8 @@ namespace B17_Ex02
 {
     public class Guess
     {
-        public List<eGameSymbols> m_Guess = null;
-        public List<eGameSymbols> guess { get; }
+        public List<eGameSymbols> m_GuessAttempt = null;
+        public List<eGameSymbols> GuessAttempt { get; }
 
         public bool ConvertToGameSymbols(string i_UserGuess)
         {
@@ -21,7 +21,7 @@ namespace B17_Ex02
             {
                 foreach (char item in i_UserGuess)
                 {
-                    m_Guess.Add((eGameSymbols)Enum.Parse(typeof(eGameSymbols), item.ToString(), ignoreCase));
+                    m_GuessAttempt.Add((eGameSymbols)Enum.Parse(typeof(eGameSymbols), item.ToString(), ignoreCase));
                 }
             }
 

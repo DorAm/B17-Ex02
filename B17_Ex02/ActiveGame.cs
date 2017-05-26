@@ -57,9 +57,23 @@ namespace B17_Ex02
             return userAnswer == "Y";
         }
 
-        private void printBoard(List<Guess> status)
+        private void printBoard(List<Guess> i_GuessList, List<GuessResult> i_Results)
         {
+            for (int i = 0; i < GameConfig.GuessLength; i++)
+            {
+
+            }
             
+        }
+
+        private void printBoardLine(Guess item)
+        {
+            string.Format(@"| {0} |")
+        }
+
+        private void printBoardLine(GuessResult item)
+        {
+            string.Format(@"| {0} |");
         }
     }
 }
