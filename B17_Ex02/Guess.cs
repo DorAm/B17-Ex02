@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace B17_Ex02
 {
-    class Guess
+    public class Guess
     {
         List<eGameSymbols> m_guess = null;
 
