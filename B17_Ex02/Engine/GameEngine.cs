@@ -14,10 +14,12 @@ namespace B17_Ex02
 
         private int m_CurrentRound;
         private Guess m_CurrentGuess;
-        private GuessResult m_CurrentGuessResult;      
+        private GuessResult m_CurrentGuessResult;
+        private bool m_IsVictory;
 
         // Getters & Setters
         public List<Guess> GuessList { get => m_GuessList; }
+        public bool IsVictory { get => m_IsVictory; }
 
         // CTOR
         public GameEngine(int i_NumOfRounds)
@@ -29,8 +31,8 @@ namespace B17_Ex02
             this.m_CurrentRound = 1;
             this.m_CurrentGuess = null;
             this.m_CurrentGuessResult = new GuessResult();
-
-    }
+            this.m_IsVictory = false;
+        }
 
         public void StartNewGame()
         {
@@ -62,7 +64,7 @@ namespace B17_Ex02
             m_CurrentGuess = i_UserGuess;
             m_GuessList.Add(m_CurrentGuess);
             compareGuess();
-            
+            checkVictory();
         }
 
         // The computer generated sequence is stored as a dictionary
@@ -93,9 +95,9 @@ namespace B17_Ex02
             return m_CurrentRound > m_NumOfRounds;
         }
 
-        public bool isVictory()
+        public void checkVictory()
         {
-            
+            this.m_IsVictory = this.m_CurrentGuessResult.BulHits == GameConfig.GuessLength;
         }
 
     }
