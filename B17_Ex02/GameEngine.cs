@@ -6,15 +6,9 @@ namespace B17_Ex02
     public class GameEngine : IGameInterface
     {
 
-        enum availableItems { c1, c2, c3, c4, c5, c6, c7, c8 };
-
-        availableItems[] generatedString = new availableItems[4];
-
-        items numbers = new int[10];
-        items[numbers = new int[10];
-        StartNewGame()
+        void IGameInterface.StartNewGame()
         {
-           
+            throw new NotImplementedException();
         }
 
         // TOOD: test this:
@@ -29,5 +23,7 @@ namespace B17_Ex02
                 generatedSeries.Add((availableItems)randomNumber);
             }
         }
+
+       
     }
 }
