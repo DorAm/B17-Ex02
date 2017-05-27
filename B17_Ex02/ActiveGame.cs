@@ -39,6 +39,7 @@ namespace B17_Ex02
         }
 
         private string finishGameProtocol()
+
         {
             if (m_Game.IsGameOver)
             {
@@ -50,7 +51,9 @@ namespace B17_Ex02
                 Console.WriteLine("congragulation! you have won!!!");
             }
 
-            Console.WriteLine("would you like to play another round? press Y for yes");
+            Console.WriteLine("Would you like to start a new game?");
+            Console.WriteLine("Press 'Y' for a rematch or any key to quit");            
+
             string userAnswer = Console.ReadLine();
             return userAnswer = userAnswer.ToUpper();
         }
@@ -77,6 +80,8 @@ namespace B17_Ex02
 
         private void printBoard(List<Guess> i_GuessList, List<GuessResult> i_Results)
         {
+            m_Game.printSequence();
+
             Console.WriteLine(
 @"|Pins:    |Results:|
 |=========|========|");
