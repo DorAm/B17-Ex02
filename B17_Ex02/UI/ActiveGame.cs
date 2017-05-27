@@ -9,8 +9,8 @@ namespace B17_Ex02
         public const string k_QuitGame = "Q";
         public const string k_Yes = "Y";
 
-        private IGameInterface m_Game = null;  
-        
+        private IGameInterface m_Game = null;
+
         public ActiveGame(int i_MaxNumOfGuesses)
         {
             m_Game = new GameEngine(i_MaxNumOfGuesses);
@@ -43,7 +43,9 @@ namespace B17_Ex02
         {
             if (m_Game.IsGameOver)
             {
-                Console.WriteLine("sorry:( you are out of guesses");
+
+                Console.WriteLine("sorry:( you are out of guesses. The right answer is");
+                printSequence();
             }
             else if (m_Game.IsVictory)
             {
@@ -51,10 +53,20 @@ namespace B17_Ex02
             }
 
             Console.WriteLine("Would you like to start a new game?");
-            Console.WriteLine("Press 'Y' for a rematch or any key to quit");            
+            Console.WriteLine("Press 'Y' for a rematch or any key to quit");
 
             string userAnswer = Console.ReadLine();
             return userAnswer = userAnswer.ToUpper();
+        }
+
+        private void printSequence()
+        {
+            foreach (var item in m_Game.GeneratedSequence)
+            {
+                Console.Write("{0} ", item.Key);
+            }
+
+            Console.WriteLine();
         }
 
         private void getUserGuess(string currUserInput, ref bool exitGame)

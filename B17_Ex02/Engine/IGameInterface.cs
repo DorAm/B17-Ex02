@@ -15,6 +15,8 @@ namespace B17_Ex02
 
         List<GuessResult> GuessResultList { get; }
 
+        Dictionary<Config.eGameSymbols, int> GeneratedSequence { get; }
+
         void StartNewGame();
 
         void makeGuess(Guess i_UserGuess);       

@@ -26,6 +26,8 @@ namespace B17_Ex02
 
         public List<GuessResult> GuessResultList { get => m_GuessResultList; }
 
+        public Dictionary<Config.eGameSymbols, int> GeneratedSequence { get => m_GeneratedSequence; }
+
         public GameEngine(int i_NumOfRounds)
         {
             this.m_NumOfRounds = i_NumOfRounds;
