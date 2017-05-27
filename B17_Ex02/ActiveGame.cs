@@ -66,6 +66,7 @@ namespace B17_Ex02
                 {
                     Console.WriteLine("Invalid Input! please enter your guess - 4 different letters or 'Q' to exit");
                     currUserInput = Console.ReadLine();
+                    currUserInput = currUserInput.ToUpper();
                     exitGame = currUserInput == k_QuitGame;
                     continue;
                 }

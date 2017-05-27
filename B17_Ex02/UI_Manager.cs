@@ -32,7 +32,7 @@ namespace B17_Ex02
 
             do
             {
-                if (!isInRange)
+                if (isInRange == false)
                 {
                     Console.WriteLine("Input is not Valid!{0}max num of guesses should be between 4 and 10", Environment.NewLine);
                 }
@@ -46,7 +46,7 @@ namespace B17_Ex02
                     parsedInput = k_ExitGame;
                 }
 
-                if (validUserInput || isInRange)
+                else if (validUserInput)
                 {
                     isInRange = (parsedInput >= 4) && (parsedInput <= 10);
                 }

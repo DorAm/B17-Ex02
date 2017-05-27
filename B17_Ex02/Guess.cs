@@ -41,8 +41,8 @@ namespace B17_Ex02
             {
                 foreach (char item in i_userGuess)
                 {
-                    validUserInput = Char.GetNumericValue(item) >= 'A' && Char.GetNumericValue(item) <= 'H';
-                    if (doubleCheck.Contains(item) == false)// check if symbol appears more than once
+                    validUserInput = item >= 'A' && item <= 'H';
+                    if (validUserInput && doubleCheck.Contains(item) == false)// check if symbol appears more than once
                     {
                         doubleCheck.Add(item);
                     }
@@ -50,6 +50,7 @@ namespace B17_Ex02
                     else
                     {
                         validUserInput = false;
+                        break;
                     }
                 }
             }
