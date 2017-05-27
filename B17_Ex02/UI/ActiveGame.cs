@@ -69,19 +69,19 @@ namespace B17_Ex02
             Console.WriteLine();
         }
 
-        private void getUserGuess(string currUserInput, ref bool exitGame)
+        private void getUserGuess(string currUserInput, ref bool io_ExitGame)
         {
             bool validUserInput = false;
-            while (!exitGame && !validUserInput)
+            while (!io_ExitGame && !validUserInput)
             {
                 Guess currentUserGuess = new Guess();
 
                 if ((validUserInput = currentUserGuess.ConvertToGameSymbols(currUserInput)) == false)
                 {
-                    Console.WriteLine("Invalid Input! please enter your guess - 4 different letters or 'Q' to exit");
+                    Console.WriteLine("please enter your guess - 4 different letters or 'Q' to exit");
                     currUserInput = Console.ReadLine();
                     currUserInput = currUserInput.ToUpper();
-                    exitGame = currUserInput == k_QuitGame;
+                    io_ExitGame = currUserInput == k_QuitGame;
                     continue;
                 }
 

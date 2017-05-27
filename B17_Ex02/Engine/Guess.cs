@@ -44,7 +44,16 @@ namespace B17_Ex02
                 {
                     validUserInput = item >= 'A' && item <= 'H';
 
+                    if(validUserInput == false)
+                    {
+                        Console.WriteLine("chars have to be between A and H!");
+                    }
+
                     // check if symbol appears more than once
+                    if(doubleCheck.Contains(item))
+                    {
+                        Console.WriteLine("chars cant appear more than once!");
+                    }
                     if (validUserInput && doubleCheck.Contains(item) == false)
                     {
                         doubleCheck.Add(item);

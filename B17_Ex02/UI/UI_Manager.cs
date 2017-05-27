@@ -23,6 +23,7 @@ namespace B17_Ex02
                 m_ActiveGame = new ActiveGame(maxNumOfGuesses);
                 m_PlayAnotherGame = m_ActiveGame.PlayGame();
             }
+            Console.WriteLine("GoodBye!");
         }
         
         // get max num of guesses from user and makes sure it is between 4 and 10
