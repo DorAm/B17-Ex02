@@ -11,6 +11,7 @@ namespace B17_Ex02
         public const int k_GuessLength = 4;
         public const int k_MinNumOfGusses = 4;
         public const int k_MaxNumOfGusses = 10;
+
         public enum eGameSymbols
         {
             A = 1,

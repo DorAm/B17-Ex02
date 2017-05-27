@@ -9,7 +9,8 @@ namespace B17_Ex02
         public const string k_QuitGame = "Q";
         public const string k_Yes = "Y";
 
-        private IGameInterface m_Game = null;      
+        private IGameInterface m_Game = null;  
+        
         public ActiveGame(int i_MaxNumOfGuesses)
         {
             m_Game = new GameEngine(i_MaxNumOfGuesses);
@@ -39,7 +40,6 @@ namespace B17_Ex02
         }
 
         private string finishGameProtocol()
-
         {
             if (m_Game.IsGameOver)
             {
@@ -72,8 +72,10 @@ namespace B17_Ex02
                     exitGame = currUserInput == k_QuitGame;
                     continue;
                 }
+
                 m_Game.makeGuess(currentUserGuess);
             }
+
             validUserInput = false;
         }
 

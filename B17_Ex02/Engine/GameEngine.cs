@@ -14,11 +14,16 @@ namespace B17_Ex02
         private GuessResult m_CurrentGuessResult;
         private bool m_IsVictory;
         private bool m_IsGameOver;
+
         // Getters
         public int NumOfRounds { get => m_NumOfRounds; }
+
         public bool IsGameOver { get => m_IsGameOver; }
+
         public bool IsVictory { get => m_IsVictory; }
+
         public List<Guess> GuessList { get => m_GuessList; }
+
         public List<GuessResult> GuessResultList { get => m_GuessResultList; }
 
         public GameEngine(int i_NumOfRounds)
@@ -70,7 +75,7 @@ namespace B17_Ex02
             checkGameOver();
         }
 
-        //The computer generated sequence is stored as a dictionary
+        // The computer generated sequence is stored as a dictionary
         // key: a generated symbol
         // value: the location of the symbol in the sequence
         private void compareGuess()
@@ -90,6 +95,7 @@ namespace B17_Ex02
                         this.m_CurrentGuessResult.PgiyaHits++;
                     }
                 }
+
                 symbolIndex++;
             }
 
@@ -98,12 +104,12 @@ namespace B17_Ex02
 
         public void checkGameOver()
         {
-            m_IsGameOver = (m_CurrentRound == m_NumOfRounds);
+            m_IsGameOver = m_CurrentRound == m_NumOfRounds;
         }
 
         public void checkVictory()
         {
-            this.m_IsVictory = (m_CurrentGuessResult.BulHits == Config.k_GuessLength);
+            this.m_IsVictory = m_CurrentGuessResult.BulHits == Config.k_GuessLength;
         }
     }
 }
