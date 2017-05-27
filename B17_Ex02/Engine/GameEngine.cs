@@ -103,7 +103,7 @@ namespace B17_Ex02
 
         public void checkVictory()
         {
-            this.m_IsVictory = this.m_CurrentGuessResult.BulHits == GameConfig.GuessLength;
+            this.m_IsVictory = this.m_CurrentGuessResult.BulHits == Config.k_GuessLength;
         }
 
     }

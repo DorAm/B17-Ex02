@@ -5,12 +5,12 @@ namespace B17_Ex02
 {
     public class Guess
     {
-        private List<eGameSymbols> m_GuessAttempt = null;
-        public List<eGameSymbols> GuessAttempt { get => m_GuessAttempt; }
+        private List<Config.eGameSymbols> m_GuessAttempt = null;
+        public List<Config.eGameSymbols> GuessAttempt { get => m_GuessAttempt; }
 
         public Guess()
         {
-            m_GuessAttempt = new List<eGameSymbols>();
+            m_GuessAttempt = new List<Config.eGameSymbols>();
         }
 
         public bool ConvertToGameSymbols(string i_UserGuess)
@@ -25,7 +25,7 @@ namespace B17_Ex02
             {
                 foreach (char item in i_UserGuess)
                 {                                    
-                    m_GuessAttempt.Add((eGameSymbols)Enum.Parse(typeof(eGameSymbols), item.ToString(), ignoreCase));
+                    m_GuessAttempt.Add((Config.eGameSymbols)Enum.Parse(typeof(Config.eGameSymbols), item.ToString(), ignoreCase));
                 }
             }
 
@@ -37,7 +37,7 @@ namespace B17_Ex02
             bool validUserInput = false;
             System.Collections.Generic.HashSet<char> doubleCheck = new HashSet<char>();
 
-            if (i_userGuess.Length == GameConfig.GuessLength)
+            if (i_userGuess.Length == Config.k_GuessLength)
             {
                 foreach (char item in i_userGuess)
                 {

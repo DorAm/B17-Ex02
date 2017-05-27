@@ -62,10 +62,10 @@ namespace B17_Ex02
 
         private void printBoard(List<Guess> i_GuessList, List<GuessResult> i_Results)
         {
-            for (int i = 0; i < GameConfig.GuessLength; i++)
-            {
+            //for (int i = 0; i < ; i++)
+            //{
 
-            }
+            //}
             
         }
 
@@ -76,7 +76,7 @@ namespace B17_Ex02
 
         private void printBoardLine(GuessResult i_GuessResult)
         {
-            StringBuilder guessResulString = new StringBuilder(GameConfig.GuessLength);
+            StringBuilder guessResulString = new StringBuilder(Config.k_GuessLength);
 
             for (int i = 0; i < i_GuessResult.BulHits; i++)
             {
@@ -88,7 +88,7 @@ namespace B17_Ex02
                 guessResulString.Append("X");
             }
 
-            for (int i = 0; i < GameConfig.GuessLength - (i_GuessResult.PgiyaHits + i_GuessResult.BulHits); i++)
+            for (int i = 0; i < Config.k_GuessLength - (i_GuessResult.PgiyaHits + i_GuessResult.BulHits); i++)
             {
                 guessResulString.Append(" ");
             }
@@ -98,8 +98,8 @@ namespace B17_Ex02
 
         private void printBoardLine()
         {
-            StringBuilder guessResulString = new StringBuilder(GameConfig.GuessLength);
-            for (int i = 0; i < GameConfig.GuessLength; i++)
+            StringBuilder guessResulString = new StringBuilder(Config.k_GuessLength);
+            for (int i = 0; i < Config.k_GuessLength; i++)
             {
                 guessResulString.Append(" ");
             }
