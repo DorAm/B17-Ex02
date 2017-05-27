@@ -32,7 +32,6 @@ namespace B17_Ex02
 
             this.m_CurrentRound = 0;
             this.m_CurrentGuess = null;
-            this.m_CurrentGuessResult = new GuessResult();
             this.m_IsVictory = false;
             this.m_IsGameOver = false;
         }
@@ -67,8 +66,10 @@ namespace B17_Ex02
             m_CurrentRound++;
             m_CurrentGuess = i_UserGuess;
             m_GuessList.Add(m_CurrentGuess);
+            this.m_CurrentGuessResult = new GuessResult();
             compareGuess();
             checkVictory();
+            checkGameOver();
         }
 
         // The computer generated sequence is stored as a dictionary
@@ -98,7 +99,7 @@ namespace B17_Ex02
 
         public void checkGameOver()
         {
-            m_IsGameOver = m_CurrentRound > m_NumOfRounds;
+            m_IsGameOver = m_CurrentRound == m_NumOfRounds;
         }
 
         public void checkVictory()

@@ -19,8 +19,9 @@ namespace B17_Ex02
             bool success = false;
             m_Game.StartNewGame();
 
-            while(!m_Game.IsGameOver && !exit)
+            while (!m_Game.IsGameOver && !exit && !m_Game.IsVictory)
             {
+                Ex02.ConsoleUtils.Screen.Clear();
                 Console.WriteLine("current board status:\n");
                 printBoard(m_Game.GuessList, m_Game.GuessResultList);
                 Console.WriteLine("please enter your guess - 4 different letters or 'Q' to exit.\n");
@@ -29,8 +30,8 @@ namespace B17_Ex02
 
                 while (!exit && !success)
                 {
-                     Guess currentUserGuess = new Guess();
-                    if(!(success = currentUserGuess.ConvertToGameSymbols(currUserInput)))
+                    Guess currentUserGuess = new Guess();
+                    if (!(success = currentUserGuess.ConvertToGameSymbols(currUserInput)))
                     {
                         Console.WriteLine("Invalid Input! please enter your guess - 4 different letters or 'Q' to exit.\n");
                         currUserInput = Console.ReadLine();
@@ -38,17 +39,19 @@ namespace B17_Ex02
                         continue;
                     }
                     m_Game.makeGuess(currentUserGuess);
-                } 
+                }
+                success = false;
             }
 
+            Ex02.ConsoleUtils.Screen.Clear();
             printBoard(m_Game.GuessList, m_Game.GuessResultList);
 
-            if(m_Game.IsGameOver)
+            if (m_Game.IsGameOver)
             {
                 Console.WriteLine("sorry:( you are out of guesses\n");
             }
 
-            else if(m_Game.IsVictory)
+            else if (m_Game.IsVictory)
             {
                 Console.WriteLine("congragulation! you have won!!!\n");
             }
@@ -62,16 +65,38 @@ namespace B17_Ex02
 
         private void printBoard(List<Guess> i_GuessList, List<GuessResult> i_Results)
         {
-            //for (int i = 0; i < ; i++)
-            //{
+            Console.WriteLine(
+@"|Pins:    |Results:|
+|=========|========|");
 
-            //}
             
+            if (m_Game.GuessList.Count > 0)
+            {
+                for (int i = 0; i < m_Game.GuessList.Count; i++)
+                {
+                    printBoardLine(i_GuessList[i]);
+                    printBoardLine(i_Results[i]);
+                    Console.WriteLine("|=========|========|");
+                }
+            }
+
+
+            for (int i = 0; i < m_Game.NumOfRounds - m_Game.GuessList.Count; i++)
+            {
+                printBoardLine();
+                Console.WriteLine("|=========|========|");
+            }
+
         }
 
         private void printBoardLine(Guess i_Guess)
         {
-            string.Format("| {0} |", i_Guess.GuessAttempt.ToString());
+            StringBuilder myPrintedGuess = new StringBuilder();
+            foreach (var item in i_Guess.GuessAttempt)
+            {
+                myPrintedGuess.Append(item.ToString());
+            }
+            Console.Write(string.Format("|   {0}  |", myPrintedGuess));
         }
 
         private void printBoardLine(GuessResult i_GuessResult)
@@ -93,7 +118,7 @@ namespace B17_Ex02
                 guessResulString.Append(" ");
             }
 
-            string.Format("| {0} |\n", guessResulString);
+            Console.WriteLine(string.Format("   {0} |", guessResulString));
         }
 
         private void printBoardLine()
@@ -103,7 +128,8 @@ namespace B17_Ex02
             {
                 guessResulString.Append(" ");
             }
-            string.Format("| {0} |\n", guessResulString);
+            Console.WriteLine(string.Format("|   {0}  |   {1} |", guessResulString, guessResulString));
         }
+
     }
 }

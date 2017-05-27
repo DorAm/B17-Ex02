@@ -9,7 +9,7 @@ namespace B17_Ex02
         void StartNewGame();
         void makeGuess(Guess i_UserGuess);
 
-        bool NumOfRounds { get; }
+        int NumOfRounds { get; }
         bool IsGameOver { get; }
         bool IsVictory { get; }        
         List<Guess> GuessList { get; }
