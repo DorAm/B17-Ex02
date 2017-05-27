@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace B17_Ex02
 {
@@ -25,6 +26,7 @@ namespace B17_Ex02
                 Console.WriteLine("please enter your guess - 4 different letters or 'Q' to exit.\n");
                 string currUserInput = Console.ReadLine();
                 exit = currUserInput == "Q";
+
                 while (!exit && !success)
                 {
                      Guess currentUserGuess = new Guess();
@@ -67,14 +69,41 @@ namespace B17_Ex02
             
         }
 
-        private void printBoardLine(Guess item)
+        private void printBoardLine(Guess i_Guess)
         {
-            string.Format(@"| {0} |");
+            string.Format("| {0} |", i_Guess.GuessAttempt.ToString());
         }
 
-        private void printBoardLine(GuessResult item)
+        private void printBoardLine(GuessResult i_GuessResult)
         {
-            string.Format(@"| {0} |");
+            StringBuilder guessResulString = new StringBuilder(GameConfig.GuessLength);
+
+            for (int i = 0; i < i_GuessResult.BulHits; i++)
+            {
+                guessResulString.Append("V");
+            }
+
+            for (int i = 0; i < i_GuessResult.PgiyaHits; i++)
+            {
+                guessResulString.Append("X");
+            }
+
+            for (int i = 0; i < GameConfig.GuessLength - (i_GuessResult.PgiyaHits + i_GuessResult.BulHits); i++)
+            {
+                guessResulString.Append(" ");
+            }
+
+            string.Format("| {0} |\n", guessResulString);
+        }
+
+        private void printBoardLine()
+        {
+            StringBuilder guessResulString = new StringBuilder(GameConfig.GuessLength);
+            for (int i = 0; i < GameConfig.GuessLength; i++)
+            {
+                guessResulString.Append(" ");
+            }
+            string.Format("| {0} |\n", guessResulString);
         }
     }
 }
