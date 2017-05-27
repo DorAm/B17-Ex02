@@ -6,12 +6,17 @@ namespace B17_Ex02
     {
         private ActiveGame m_ActiveGame = null;
         private bool m_PlayAnotherGame = true;
+        private const int m_exit = 0;
         public void RunGame()
         {
             while (m_PlayAnotherGame)
             {
                 Console.WriteLine("Hello! Welcome to bul pgyaa\nPlease enter max number of guesses. should be between 4 and 10");
                 int maxNumOfGuesses = getUserInput();
+                if(maxNumOfGuesses == m_exit)
+                {
+
+                }
                 m_ActiveGame = new ActiveGame(maxNumOfGuesses);
                 m_PlayAnotherGame = m_ActiveGame.PlayGame();// for testing
             }
@@ -33,9 +38,9 @@ namespace B17_Ex02
                 success = int.TryParse(input, out parsedInput);
                 if (input == "Q" || input == "q")
                 {
-                    parsedInput = 0;
+                    parsedInput = m_exit;
                 }
-                if (success)
+                if (success || isInRange)
                 {
                     isInRange = (parsedInput >= 4) && (parsedInput <= 8) ? true : false;
                 }
