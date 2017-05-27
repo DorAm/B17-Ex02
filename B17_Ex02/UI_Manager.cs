@@ -16,7 +16,7 @@ namespace B17_Ex02
                 int maxNumOfGuesses = getUserInput();
                 if(maxNumOfGuesses == k_ExitGame)
                 {
-
+                    break;
                 }
                 m_ActiveGame = new ActiveGame(maxNumOfGuesses);
                 m_PlayAnotherGame = m_ActiveGame.PlayGame();// for testing
@@ -48,7 +48,7 @@ namespace B17_Ex02
 
                 if (validUserInput || isInRange)
                 {
-                    isInRange = (parsedInput >= 4) && (parsedInput <= 8);
+                    isInRange = (parsedInput >= 4) && (parsedInput <= 10);
                 }
 
             } while (!isInRange);

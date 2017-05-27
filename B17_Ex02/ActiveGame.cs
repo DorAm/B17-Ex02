@@ -27,6 +27,7 @@ namespace B17_Ex02
                 printBoard(m_Game.GuessList, m_Game.GuessResultList);
                 Console.WriteLine("please enter your guess - 4 different letters or 'Q' to exit");
                 string currUserInput = Console.ReadLine();
+                currUserInput = currUserInput.ToUpper();
                 exitGame = currUserInput == k_QuitGame;
                 getUserGuess(currUserInput, ref exitGame);
             }
@@ -89,13 +90,11 @@ namespace B17_Ex02
                 }
             }
 
-
             for (int i = 0; i < m_Game.NumOfRounds - m_Game.GuessList.Count; i++)
             {
                 printBoardLine();
                 Console.WriteLine("|=========|========|");
             }
-
         }
 
         private void printBoardLine(Guess i_Guess)
@@ -140,6 +139,5 @@ namespace B17_Ex02
             }
             Console.WriteLine(string.Format("|   {0}  |   {1} |", guessResulString, guessResulString));
         }
-
     }
 }

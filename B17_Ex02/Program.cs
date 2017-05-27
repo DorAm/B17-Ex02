@@ -9,6 +9,5 @@ namespace B17_Ex02
             UI_Manager gameStarter = new UI_Manager();
             gameStarter.RunGame();
         }
-
     }
 }
