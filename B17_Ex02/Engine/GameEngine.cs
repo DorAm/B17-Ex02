@@ -6,8 +6,6 @@ namespace B17_Ex02
 {
     public class GameEngine : IGameInterface
     {
-        // Game Status:
-
         private int m_NumOfRounds;
         private Dictionary<eGameSymbols, int> m_GeneratedSequence;
         private List<Guess> m_GuessList;
@@ -59,6 +57,7 @@ namespace B17_Ex02
                     randomNum = rand.Next(1, numOfSymbols - 1);
                     randomSymbol = (eGameSymbols)randomNum;
                 }
+
                 m_GeneratedSequence.Add(randomSymbol, i);
             }
         }
@@ -93,12 +92,14 @@ namespace B17_Ex02
                     }
                 }
             }
+            m_GuessResultList.Add(m_CurrentGuessResult);
         }
 
         public void checkGameOver()
         {
             m_IsGameOver = m_CurrentRound > m_NumOfRounds;
         }
+
         public void checkVictory()
         {
             this.m_IsVictory = this.m_CurrentGuessResult.BulHits == GameConfig.GuessLength;
