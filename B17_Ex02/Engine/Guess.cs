@@ -46,7 +46,6 @@ namespace B17_Ex02
                     {
                         doubleCheck.Add(item);
                     }
-
                     else
                     {
                         validUserInput = false;

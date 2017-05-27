@@ -45,7 +45,6 @@ namespace B17_Ex02
             {
                 Console.WriteLine("sorry:( you are out of guesses");
             }
-
             else if (m_Game.IsVictory)
             {
                 Console.WriteLine("congragulation! you have won!!!");
@@ -80,8 +79,10 @@ namespace B17_Ex02
 
         private void printBoard(List<Guess> i_GuessList, List<GuessResult> i_Results)
         {
-            Console.WriteLine(
-@"|Pins:    |Results:|
+            Console.WriteLine(@"
+|Pins:    |Results:|
+|=========|========|
+| # # # # |        |
 |=========|========|");
 
             if (m_Game.GuessList.Count > 0)
@@ -104,11 +105,13 @@ namespace B17_Ex02
         private void printBoardLine(Guess i_Guess)
         {
             StringBuilder myPrintedGuess = new StringBuilder();
+
             foreach (var item in i_Guess.GuessAttempt)
             {
                 myPrintedGuess.Append(" ");
                 myPrintedGuess.Append(item.ToString());
             }
+
             Console.Write(string.Format("|{0} |", myPrintedGuess));
         }
 
@@ -118,12 +121,12 @@ namespace B17_Ex02
 
             for (int i = 0; i < i_GuessResult.BulHits; i++)
             {
-                guessResulString.Append(" V");
+                guessResulString.Append("V ");
             }
 
             for (int i = 0; i < i_GuessResult.PgiyaHits; i++)
             {
-                guessResulString.Append(" X");
+                guessResulString.Append("X ");
             }
 
             for (int i = 0; i < Config.k_GuessLength - (i_GuessResult.PgiyaHits + i_GuessResult.BulHits); i++)
@@ -137,10 +140,12 @@ namespace B17_Ex02
         private void printBoardLine()
         {
             StringBuilder guessResulString = new StringBuilder(Config.k_GuessLength);
+
             for (int i = 0; i < Config.k_GuessLength; i++)
             {
                 guessResulString.Append(" ");
             }
+
             Console.WriteLine(string.Format("|   {0}  |   {1} |", guessResulString, guessResulString));
         }
     }

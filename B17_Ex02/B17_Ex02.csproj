@@ -40,13 +40,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActiveGame.cs" />
+    <Compile Include="UI\ActiveGame.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="Engine\GuessResult.cs" />
-    <Compile Include="Guess.cs" />
+    <Compile Include="Engine\Guess.cs" />
     <Compile Include="Engine\IGameInterface.cs" />
     <Compile Include="Engine\GameEngine.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="UI_Manager.cs" />
+    <Compile Include="UI\UI_Manager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

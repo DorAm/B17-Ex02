@@ -5,20 +5,15 @@ namespace B17_Ex02
 {
     public class GameEngine : IGameInterface
     {
-        public const int k_GuessLength = 4;
-        public enum eGameSymbols { A = 1, B, C, D, E, F, G, H }
         private int m_NumOfRounds;
-
-        private Dictionary<eGameSymbols, int> m_GeneratedSequence;
+        private Dictionary<Config.eGameSymbols, int> m_GeneratedSequence;
         private List<Guess> m_GuessList;
         private List<GuessResult> m_GuessResultList;
-
         private int m_CurrentRound;
         private Guess m_CurrentGuess;
         private GuessResult m_CurrentGuessResult;
         private bool m_IsVictory;
         private bool m_IsGameOver;
-      
         // Getters
         public int NumOfRounds { get => m_NumOfRounds; }
         public bool IsGameOver { get => m_IsGameOver; }
@@ -29,10 +24,9 @@ namespace B17_Ex02
         public GameEngine(int i_NumOfRounds)
         {
             this.m_NumOfRounds = i_NumOfRounds;
-            this.m_GeneratedSequence = new Dictionary<eGameSymbols, int>();
+            this.m_GeneratedSequence = new Dictionary<Config.eGameSymbols, int>();
             this.m_GuessList = new List<Guess>();
             this.m_GuessResultList = new List<GuessResult>(); 
-
             this.m_CurrentRound = 0;
             this.m_CurrentGuess = null;
             this.m_IsVictory = false;
@@ -46,32 +40,23 @@ namespace B17_Ex02
 
         private void generateRandomSymbolSeries()
         {
-            Array symbols = Enum.GetValues(typeof(eGameSymbols));
+            Array symbols = Enum.GetValues(typeof(Config.eGameSymbols));
             int numOfSymbols = symbols.Length;
             Random rand = new Random();
 
-            for (int i = 0; i < k_GuessLength; i++)
+            for (int i = 0; i < Config.k_GuessLength; i++)
             {
-                int randomNum = rand.Next(1, numOfSymbols - 1);
-                eGameSymbols randomSymbol = (eGameSymbols)randomNum;
+                const int k_FirstSymbol = 1;
+                int randomNum = rand.Next(k_FirstSymbol, numOfSymbols - 1);
+                Config.eGameSymbols randomSymbol = (Config.eGameSymbols)randomNum;
                 while (m_GeneratedSequence.ContainsKey(randomSymbol))
                 {
-                    randomNum = rand.Next(1, numOfSymbols - 1);
-                    randomSymbol = (eGameSymbols)randomNum;
+                    randomNum = rand.Next(k_FirstSymbol, numOfSymbols - 1);
+                    randomSymbol = (Config.eGameSymbols)randomNum;
                 }
 
                 m_GeneratedSequence.Add(randomSymbol, i);
             }         
-        }
-
-        // TODO: remove, this is for testing only:
-        public void printSequence()
-        {
-            foreach (var item in m_GeneratedSequence)
-            {                
-                Console.Write("{0} ", item.Key);
-            }
-            Console.WriteLine();
         }
 
         public void makeGuess(Guess i_UserGuess)
@@ -88,11 +73,11 @@ namespace B17_Ex02
         //The computer generated sequence is stored as a dictionary
         // key: a generated symbol
         // value: the location of the symbol in the sequence
-
         private void compareGuess()
         {
             int symbolIndex = 0;
-            foreach (eGameSymbols symbol in m_CurrentGuess.GuessAttempt)
+
+            foreach (Config.eGameSymbols symbol in m_CurrentGuess.GuessAttempt)
             {
                 if (m_GeneratedSequence.ContainsKey(symbol))
                 {
@@ -107,6 +92,7 @@ namespace B17_Ex02
                 }
                 symbolIndex++;
             }
+
             m_GuessResultList.Add(m_CurrentGuessResult);
         }
 
@@ -117,7 +103,7 @@ namespace B17_Ex02
 
         public void checkVictory()
         {
-            this.m_IsVictory = (m_CurrentGuessResult.BulHits == k_GuessLength);
+            this.m_IsVictory = (m_CurrentGuessResult.BulHits == Config.k_GuessLength);
         }
     }
 }
