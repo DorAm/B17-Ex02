@@ -6,8 +6,10 @@ namespace B17_Ex02
 {
     public class ActiveGame
     {
-        private IGameInterface m_Game = null;
+        public const string k_QuitGame = "Q";
+        public const string k_Yes = "Y";
 
+        private IGameInterface m_Game = null;      
         public ActiveGame(int i_MaxNumOfGuesses)
         {
             m_Game = new GameEngine(i_MaxNumOfGuesses);
@@ -15,58 +17,60 @@ namespace B17_Ex02
 
         public bool PlayGame()
         {
-            bool exit = false; // TODO: change variable name
-            bool success = false; // TODO: change variable name
+            bool exitGame = false;
             m_Game.StartNewGame();
 
-            while (!m_Game.IsGameOver && !exit && !m_Game.IsVictory)
-            // TODO: change to:
-            // while (m_Game.IsGameOver == false && !exit) 
-            // GuyRo said he don't like !
-
-            while (!m_Game.IsGameOver && !exit) 
+            while (m_Game.IsGameOver == false && exitGame == false && m_Game.IsVictory == false)
             {
                 Ex02.ConsoleUtils.Screen.Clear();
-                Console.WriteLine("current board status:\n");
+                Console.WriteLine("current board status:");
                 printBoard(m_Game.GuessList, m_Game.GuessResultList);
-                Console.WriteLine("please enter your guess - 4 different letters or 'Q' to exit.\n");
+                Console.WriteLine("please enter your guess - 4 different letters or 'Q' to exit");
                 string currUserInput = Console.ReadLine();
-
-                exit = currUserInput == "Q"; // TODO use constants for Q instead of strings (QUIT_GAME = "Q" ...)
-
-                while (!exit && !success)
-                {
-                    Guess currentUserGuess = new Guess();
-                    if (!(success = currentUserGuess.ConvertToGameSymbols(currUserInput)))
-                    {
-                        Console.WriteLine("Invalid Input! please enter your guess - 4 different letters or 'Q' to exit.\n"); // TODO - don't use \n for new line (it's not cross platform)
-                        currUserInput = Console.ReadLine();
-                        exit = currUserInput == "Q";
-                        continue;
-                    }
-                    m_Game.makeGuess(currentUserGuess);
-                }
-                success = false;
+                exitGame = currUserInput == k_QuitGame;
+                getUserGuess(currUserInput, ref exitGame);
             }
 
             Ex02.ConsoleUtils.Screen.Clear();
             printBoard(m_Game.GuessList, m_Game.GuessResultList);
+            string userAnswer = finishGameProtocol();
+            return userAnswer == k_Yes;
+        }
 
+        private string finishGameProtocol()
+        {
             if (m_Game.IsGameOver)
             {
-                Console.WriteLine("sorry:( you are out of guesses\n"); // TODO replace \n
+                Console.WriteLine("sorry:( you are out of guesses");
             }
 
             else if (m_Game.IsVictory)
             {
-                Console.WriteLine("congragulation! you have won!!!\n"); // TOOD \n
+                Console.WriteLine("congragulation! you have won!!!");
             }
 
-            Console.WriteLine("would you like to play another round? press Y for yes\n"); // TODO \n
+            Console.WriteLine("would you like to play another round? press Y for yes");
             string userAnswer = Console.ReadLine();
-            userAnswer = userAnswer.ToUpper();
+            return userAnswer = userAnswer.ToUpper();
+        }
 
-            return userAnswer == "Y";
+        private void getUserGuess(string currUserInput, ref bool exitGame)
+        {
+            bool validUserInput = false;
+            while (!exitGame && !validUserInput)
+            {
+                Guess currentUserGuess = new Guess();
+
+                if ((validUserInput = currentUserGuess.ConvertToGameSymbols(currUserInput)) == false)
+                {
+                    Console.WriteLine("Invalid Input! please enter your guess - 4 different letters or 'Q' to exit");
+                    currUserInput = Console.ReadLine();
+                    exitGame = currUserInput == k_QuitGame;
+                    continue;
+                }
+                m_Game.makeGuess(currentUserGuess);
+            }
+            validUserInput = false;
         }
 
         private void printBoard(List<Guess> i_GuessList, List<GuessResult> i_Results)
@@ -75,9 +79,8 @@ namespace B17_Ex02
 @"|Pins:    |Results:|
 |=========|========|");
 
-            
             if (m_Game.GuessList.Count > 0)
-            { 
+            {
                 for (int i = 0; i < m_Game.GuessList.Count; i++)
                 {
                     printBoardLine(i_GuessList[i]);
@@ -100,9 +103,10 @@ namespace B17_Ex02
             StringBuilder myPrintedGuess = new StringBuilder();
             foreach (var item in i_Guess.GuessAttempt)
             {
+                myPrintedGuess.Append(" ");
                 myPrintedGuess.Append(item.ToString());
             }
-            Console.Write(string.Format("|   {0}  |", myPrintedGuess));
+            Console.Write(string.Format("|{0} |", myPrintedGuess));
         }
 
         private void printBoardLine(GuessResult i_GuessResult)
@@ -111,20 +115,20 @@ namespace B17_Ex02
 
             for (int i = 0; i < i_GuessResult.BulHits; i++)
             {
-                guessResulString.Append("V");
+                guessResulString.Append(" V");
             }
 
             for (int i = 0; i < i_GuessResult.PgiyaHits; i++)
             {
-                guessResulString.Append("X");
+                guessResulString.Append(" X");
             }
 
             for (int i = 0; i < Config.k_GuessLength - (i_GuessResult.PgiyaHits + i_GuessResult.BulHits); i++)
             {
-                guessResulString.Append(" ");
+                guessResulString.Append("  ");
             }
 
-            Console.WriteLine(string.Format("   {0} |", guessResulString));
+            Console.WriteLine(string.Format("{0}|", guessResulString));
         }
 
         private void printBoardLine()

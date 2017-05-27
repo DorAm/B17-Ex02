@@ -6,14 +6,15 @@ namespace B17_Ex02
     {
         private ActiveGame m_ActiveGame = null;
         private bool m_PlayAnotherGame = true;
-        private const int m_exit = 0;
+        private const int k_ExitGame = 0;
+
         public void RunGame()
         {
             while (m_PlayAnotherGame)
             {
                 Console.WriteLine("Hello! Welcome to bul pgyaa\nPlease enter max number of guesses. should be between 4 and 10");
                 int maxNumOfGuesses = getUserInput();
-                if(maxNumOfGuesses == m_exit)
+                if(maxNumOfGuesses == k_ExitGame)
                 {
 
                 }
@@ -21,36 +22,39 @@ namespace B17_Ex02
                 m_PlayAnotherGame = m_ActiveGame.PlayGame();// for testing
             }
         }
-
+        
+        // get max num of guesses from user and makes sure it is between 4 and 10
         private int getUserInput()
         {
-            bool success = false;
+            bool validUserInput = false;
             bool isInRange = true;
             int parsedInput;
+
             do
             {
                 if (!isInRange)
                 {
-                    Console.WriteLine("Input is not Valid!\nmax num of guesses should be between 4 and 10");
+                    Console.WriteLine("Input is not Valid!{0}max num of guesses should be between 4 and 10", Environment.NewLine);
                 }
 
                 String input = Console.ReadLine();
-                success = int.TryParse(input, out parsedInput);
-                if (input == "Q" || input == "q")
+                validUserInput = int.TryParse(input, out parsedInput);
+                input.ToUpper();
+
+                if (input == ActiveGame.k_QuitGame)
                 {
-                    parsedInput = m_exit;
+                    parsedInput = k_ExitGame;
                 }
-                if (success || isInRange)
+
+                if (validUserInput || isInRange)
                 {
-                    isInRange = (parsedInput >= 4) && (parsedInput <= 8) ? true : false;
+                    isInRange = (parsedInput >= 4) && (parsedInput <= 8);
                 }
 
             } while (!isInRange);
 
             return parsedInput;
-        }// get max num of guesses from user and makes sure it is between 4 and 10
-
-            
+        }
     }
 }
 
