@@ -6,8 +6,13 @@ namespace B17_Ex02
 {
     public class Guess
     {
-        public List<eGameSymbols> m_GuessAttempt = null;
-        public List<eGameSymbols> GuessAttempt { get; }
+        private List<eGameSymbols> m_GuessAttempt = null;
+        public List<eGameSymbols> GuessAttempt { get => m_GuessAttempt; }
+
+        public Guess()
+        {
+            m_GuessAttempt = new List<eGameSymbols>();
+        }
 
         public bool ConvertToGameSymbols(string i_UserGuess)
         {
@@ -20,7 +25,7 @@ namespace B17_Ex02
             if (validUserInput)
             {
                 foreach (char item in i_UserGuess)
-                {
+                {                                    
                     m_GuessAttempt.Add((eGameSymbols)Enum.Parse(typeof(eGameSymbols), item.ToString(), ignoreCase));
                 }
             }
