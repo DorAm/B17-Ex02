@@ -54,6 +54,7 @@ namespace B17_Ex02
                     {
                         Console.WriteLine("chars cant appear more than once!");
                     }
+
                     if (validUserInput && doubleCheck.Contains(item) == false)
                     {
                         doubleCheck.Add(item);

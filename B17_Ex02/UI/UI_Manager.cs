@@ -23,6 +23,7 @@ namespace B17_Ex02
                 m_ActiveGame = new ActiveGame(maxNumOfGuesses);
                 m_PlayAnotherGame = m_ActiveGame.PlayGame();
             }
+
             Console.WriteLine("GoodBye!");
         }
         

@@ -43,7 +43,6 @@ namespace B17_Ex02
         {
             if (m_Game.IsGameOver)
             {
-
                 Console.WriteLine("sorry:( you are out of guesses. The right answer is");
                 printSequence();
             }
