@@ -58,7 +58,17 @@ namespace B17_Ex02
                 }
 
                 m_GeneratedSequence.Add(randomSymbol, i);
+            }         
+        }
+
+        // TODO: remove, this is for testing only:
+        public void printSequence()
+        {
+            foreach (var item in m_GeneratedSequence)
+            {                
+                Console.Write("{0} ", item.Key);
             }
+            Console.WriteLine();
         }
 
         public void makeGuess(Guess i_UserGuess)

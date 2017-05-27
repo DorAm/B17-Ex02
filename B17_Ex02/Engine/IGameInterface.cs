@@ -8,6 +8,7 @@ namespace B17_Ex02
     {
         void StartNewGame();
         void makeGuess(Guess i_UserGuess);
+        void printSequence();
 
         int NumOfRounds { get; }
         bool IsGameOver { get; }

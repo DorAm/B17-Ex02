@@ -75,6 +75,8 @@ namespace B17_Ex02
 
         private void printBoard(List<Guess> i_GuessList, List<GuessResult> i_Results)
         {
+            m_Game.printSequence();
+
             Console.WriteLine(
 @"|Pins:    |Results:|
 |=========|========|");
