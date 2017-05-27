@@ -35,6 +35,7 @@ namespace B17_Ex02
                         exit = currUserInput == "Q";
                         continue;
                     }
+                    m_Game.makeGuess(currentUserGuess);
                 } 
             }
 

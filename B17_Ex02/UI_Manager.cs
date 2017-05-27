@@ -4,7 +4,7 @@ namespace B17_Ex02
 {
     public class UI_Manager
     {
-        private ActiveGame m_activeGame = null;
+        private ActiveGame m_ActiveGame = null;
         private bool m_PlayAnotherGame = true;
         public void RunGame()
         {
@@ -12,8 +12,8 @@ namespace B17_Ex02
             {
                 Console.WriteLine("Hello! Welcome to bul pgyaa\nPlease enter max number of guesses. should be between 4 and 10");
                 int maxNumOfGuesses = getUserInput();
-                m_activeGame = new ActiveGame(maxNumOfGuesses);
-                m_PlayAnotherGame = m_activeGame.PlayGame();// for testing
+                m_ActiveGame = new ActiveGame(maxNumOfGuesses);
+                m_PlayAnotherGame = m_ActiveGame.PlayGame();// for testing
             }
         }
 
