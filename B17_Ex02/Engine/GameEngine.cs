@@ -5,8 +5,11 @@ namespace B17_Ex02
 {
     public class GameEngine : IGameInterface
     {
+        public const int k_GuessLength = 4;
+        public enum eGameSymbols { A = 1, B, C, D, E, F, G, H }
         private int m_NumOfRounds;
-        private Dictionary<Config.eGameSymbols, int> m_GeneratedSequence;
+
+        private Dictionary<eGameSymbols, int> m_GeneratedSequence;
         private List<Guess> m_GuessList;
         private List<GuessResult> m_GuessResultList;
 
@@ -26,7 +29,7 @@ namespace B17_Ex02
         public GameEngine(int i_NumOfRounds)
         {
             this.m_NumOfRounds = i_NumOfRounds;
-            this.m_GeneratedSequence = new Dictionary<Config.eGameSymbols, int>();
+            this.m_GeneratedSequence = new Dictionary<eGameSymbols, int>();
             this.m_GuessList = new List<Guess>();
             this.m_GuessResultList = new List<GuessResult>(); 
 
@@ -43,18 +46,18 @@ namespace B17_Ex02
 
         private void generateRandomSymbolSeries()
         {
-            Array symbols = Enum.GetValues(typeof(Config.eGameSymbols));
+            Array symbols = Enum.GetValues(typeof(eGameSymbols));
             int numOfSymbols = symbols.Length;
             Random rand = new Random();
 
-            for (int i = 0; i < Config.k_GuessLength; i++)
+            for (int i = 0; i < k_GuessLength; i++)
             {
                 int randomNum = rand.Next(1, numOfSymbols - 1);
-                Config.eGameSymbols randomSymbol = (Config.eGameSymbols)randomNum;
+                eGameSymbols randomSymbol = (eGameSymbols)randomNum;
                 while (m_GeneratedSequence.ContainsKey(randomSymbol))
                 {
                     randomNum = rand.Next(1, numOfSymbols - 1);
-                    randomSymbol = (Config.eGameSymbols)randomNum;
+                    randomSymbol = (eGameSymbols)randomNum;
                 }
 
                 m_GeneratedSequence.Add(randomSymbol, i);
@@ -89,7 +92,7 @@ namespace B17_Ex02
         private void compareGuess()
         {
             int symbolIndex = 0;
-            foreach (Config.eGameSymbols symbol in m_CurrentGuess.GuessAttempt)
+            foreach (eGameSymbols symbol in m_CurrentGuess.GuessAttempt)
             {
                 if (m_GeneratedSequence.ContainsKey(symbol))
                 {
@@ -109,12 +112,12 @@ namespace B17_Ex02
 
         public void checkGameOver()
         {
-            m_IsGameOver = m_CurrentRound == m_NumOfRounds;
+            m_IsGameOver = (m_CurrentRound == m_NumOfRounds);
         }
 
         public void checkVictory()
         {
-            this.m_IsVictory = this.m_CurrentGuessResult.BulHits == Config.k_GuessLength;
+            this.m_IsVictory = (m_CurrentGuessResult.BulHits == k_GuessLength);
         }
 
     }
