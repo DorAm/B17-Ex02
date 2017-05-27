@@ -85,7 +85,7 @@ namespace B17_Ex02
             checkGameOver();
         }
 
-        // The computer generated sequence is stored as a dictionary
+        //The computer generated sequence is stored as a dictionary
         // key: a generated symbol
         // value: the location of the symbol in the sequence
 
@@ -119,6 +119,5 @@ namespace B17_Ex02
         {
             this.m_IsVictory = (m_CurrentGuessResult.BulHits == k_GuessLength);
         }
-
     }
 }

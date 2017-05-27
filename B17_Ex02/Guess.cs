@@ -35,21 +35,21 @@ namespace B17_Ex02
         private bool checkUserInput(string i_userGuess)
         {
             bool validUserInput = false;
-            System.Collections.Generic.HashSet<char> doubleCheck = new HashSet<char>();
 
+            HashSet<char> doubleCheck = new HashSet<char>();
             if (i_userGuess.Length == Config.k_GuessLength)
             {
                 foreach (char item in i_userGuess)
                 {
-                    validUserInput = Char.GetNumericValue(item) >= 'A' && Char.GetNumericValue(item) <= 'H';
-
-                    if (validUserInput = !doubleCheck.Contains(item))// check if symbol appears more than once
+                    validUserInput = item >= 'A' && item <= 'H';
+                    if (validUserInput && doubleCheck.Contains(item) == false)// check if symbol appears more than once
                     {
                         doubleCheck.Add(item);
                     }
 
                     else
                     {
+                        validUserInput = false;
                         break;
                     }
                 }
