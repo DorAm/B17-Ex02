@@ -6,6 +6,7 @@ namespace B17_Ex02
     public class Guess
     {
         private List<Config.eGameSymbols> m_GuessAttempt = null;
+
         public List<Config.eGameSymbols> GuessAttempt { get => m_GuessAttempt; }
 
         public Guess()
@@ -42,7 +43,9 @@ namespace B17_Ex02
                 foreach (char item in i_userGuess)
                 {
                     validUserInput = item >= 'A' && item <= 'H';
-                    if (validUserInput && doubleCheck.Contains(item) == false)// check if symbol appears more than once
+
+                    // check if symbol appears more than once
+                    if (validUserInput && doubleCheck.Contains(item) == false)
                     {
                         doubleCheck.Add(item);
                     }
@@ -58,4 +61,3 @@ namespace B17_Ex02
         }
     }
 }
-

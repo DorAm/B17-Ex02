@@ -1,9 +1,7 @@
-﻿
-namespace B17_Ex02
+﻿namespace B17_Ex02
 {
-    class Program
+    public class Program
     {
-
         public static void Main()
         {
             UI_Manager gameStarter = new UI_Manager();
