@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace B17_Ex02
@@ -23,14 +22,14 @@ namespace B17_Ex02
         public List<Guess> GuessList { get => m_GuessList; }
         public List<GuessResult> GuessResultList { get => m_GuessResultList; }
 
-        // CTOR
         public GameEngine(int i_NumOfRounds)
         {
             this.m_NumOfRounds = i_NumOfRounds;
             this.m_GeneratedSequence = new Dictionary<eGameSymbols, int>();
             this.m_GuessList = new List<Guess>();
+            this.m_GuessResultList = new List<GuessResult>(); 
 
-            this.m_CurrentRound = 1;
+            this.m_CurrentRound = 0;
             this.m_CurrentGuess = null;
             this.m_CurrentGuessResult = new GuessResult();
             this.m_IsVictory = false;
@@ -91,6 +90,7 @@ namespace B17_Ex02
                         this.m_CurrentGuessResult.PgiyaHits++;
                     }
                 }
+                symbolIndex++;
             }
             m_GuessResultList.Add(m_CurrentGuessResult);
         }
