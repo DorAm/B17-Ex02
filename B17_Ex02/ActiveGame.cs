@@ -18,10 +18,10 @@ namespace B17_Ex02
             bool success = false;
             m_Game.StartNewGame();
 
-            while(!m_Game.isGameOver() && !exit)
+            while(!m_Game.IsGameOver && !exit)
             {
                 Console.WriteLine("current board status:\n");
-                printBoard(m_Game.GuessList);
+                printBoard(m_Game.GuessList, m_Game.GuessResultList);
                 Console.WriteLine("please enter your guess - 4 different letters or 'Q' to exit.\n");
                 string currUserInput = Console.ReadLine();
                 exit = currUserInput == "Q";
@@ -38,14 +38,14 @@ namespace B17_Ex02
                 } 
             }
 
-            printBoard(m_Game.GuessList);
+            printBoard(m_Game.GuessList, m_Game.GuessResultList);
 
-            if(m_Game.isGameOver())
+            if(m_Game.IsGameOver)
             {
                 Console.WriteLine("sorry:( you are out of guesses\n");
             }
 
-            else if(m_Game.isWon())
+            else if(m_Game.IsVictory)
             {
                 Console.WriteLine("congragulation! you have won!!!\n");
             }
@@ -68,7 +68,7 @@ namespace B17_Ex02
 
         private void printBoardLine(Guess item)
         {
-            string.Format(@"| {0} |")
+            string.Format(@"| {0} |");
         }
 
         private void printBoardLine(GuessResult item)
